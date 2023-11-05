@@ -149,6 +149,7 @@
 .theme-menu__button::after {
   content: '';
   display: block;
+  position: absolute;
   background: var(--themes-color-main, #00cc14);
   transition: scale 0.3s ease;
   transform-origin: 0;
@@ -370,7 +371,7 @@ There may be a solution that I don't know about...
   }
 }
 
-.card__like-button {
+.accent-button {
   position: relative;
   display: flex;
   justify-content: center;
@@ -380,20 +381,18 @@ There may be a solution that I don't know about...
   background: var(--themes-color-background, #000);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
-  block-size: 38px;
-  inline-size: 130px;
   appearance: none;
 }
 
-.card__like-button:focus {
+.accent-button:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible {
+.accent-button:focus-visible {
   box-shadow: 2px 2px var(--themes-color-main);
 }
 
-.card__like-button::before {
+.accent-button::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -403,13 +402,18 @@ There may be a solution that I don't know about...
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card__like-button::before {
+  .accent-button::before {
     transition: none;
   }
 }
 
-.card__like-button:hover::before {
+.accent-button:hover::before {
   translate: 0%;
+}
+
+.card__like-button {
+  block-size: 38px;
+  inline-size: 130px;
 }
 
 .button__text {
@@ -426,15 +430,8 @@ There may be a solution that I don't know about...
 }
 
 .footer__button-floppy {
-  display: flex;
-  align-items: center;
   gap: 8px;
-  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 15px 20px;
-  font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
 }
 
 @media (width <= 375px) {
@@ -495,12 +492,7 @@ There may be a solution that I don't know about...
 }
 
 .save-dialog__button {
-  display: block;
-  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 9px 17px;
   text-transform: uppercase;
-  background: transparent;
-  cursor: pointer;
   inline-size: 100%;
-  appearance: none;
 }

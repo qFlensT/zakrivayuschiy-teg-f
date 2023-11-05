@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
     <title>Закрывающий тег</title>
+    <link rel="icon" href="./images/favicon.ico" sizes="any" />
+    <link rel="icon" href="./svg/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/favicon.png" />
     <link rel="stylesheet" href="./fonts/fonts.css" />
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/globals.css" />
@@ -106,7 +109,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -173,7 +176,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -240,7 +243,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -306,7 +309,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -375,7 +378,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -439,7 +442,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -507,7 +510,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -578,7 +581,7 @@
                     />
                   </svg>
                 </button>
-                <button type="button" class="card__like-button">
+                <button type="button" class="accent-button card__like-button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -590,14 +593,15 @@
     <footer class="footer">
       <button
         type="button"
-        class="footer__button-floppy"
+        class="accent-button footer__button-floppy"
         onclick="window['save-dialog'].showModal()"
       >
-        <svg viewBox="0 0 21 21" class="floppy">
-          <!--  Prettier crashes if closing <use> doesnt exist-->
+        <span class="button__text">
+          <svg viewBox="0 0 21 21" class="floppy">
+            <!--  Prettier crashes if closing <use> doesnt exist-->
 
-          <use href="/svg/floppy.svg#floppy"></use>
-        </svg>
+            <use href="/svg/floppy.svg#floppy"></use></svg
+        ></span>
         <span class="button__text">Сохранить на память</span>
       </button>
     </footer>
@@ -609,7 +613,7 @@
       </svg>
       <p class="save-dialog__text">Вставьте дискету, чтобы продолжить</p>
       <form class="save-dialog__form">
-        <button type="submit" class="save-dialog__button">
+        <button type="submit" class="accent-button save-dialog__button">
           <span class="button__text">Ок</span>
         </button>
       </form>
