@@ -21,3 +21,21 @@
     translate: 4px;
   }
 }
+
+@keyframes scale-up {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.5;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
