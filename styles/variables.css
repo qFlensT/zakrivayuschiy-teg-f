@@ -1,5 +1,7 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 :root {
+  /* Dark theme variables */
+
   --themes-gradient-background: repeating-linear-gradient(
       90deg,
       #000 0px 2px,
@@ -7,13 +9,16 @@
     ),
     repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
     linear-gradient(#007f0c, #004306);
-  --themes-color-main: #00cc14;
   --themes-color-background: #000;
+  --themes-color-button-text: #00cc14;
+  --themes-color-main: #00cc14;
   --themes-color-heart-contour: #00cc14;
+  --themes-color-text-stroke: #000;
   --themes-font-weight-normal: 465;
   --themes-font-weight-heading: 785;
-  --themes-color-text-stroke: #000;
-  --themes-color-button-text: #00cc14;
+
+  /* Common variables */
+
   --color-heart-sparks: #ff0000;
   --font-main: 'Inter';
   --font-accent: 'Press Start 2P';

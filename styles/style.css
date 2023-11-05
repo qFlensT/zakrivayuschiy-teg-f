@@ -66,12 +66,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-block-start: 102px;
+  padding: clamp(7.5rem, 7.148rem + 1.502vw, 8.5rem) 0 25px;
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   background: var(--themes-color-background, #000);
   inline-size: min(calc(100% - 4px), 696px);
   block-size: min-content;
-  margin-block-start: 102px;
-  padding: clamp(7.5rem, 7.148rem + 1.502vw, 8.5rem) 0 25px;
 }
 
 .header__title {
@@ -96,8 +96,8 @@
   flex-direction: column;
   align-items: start;
   gap: 14px;
-  inline-size: 100%;
   font-size: 0;
+  inline-size: 100%;
 }
 
 .theme-menu__button {
@@ -110,11 +110,15 @@
   font-size: var(--font-size-reduced, 0.875rem);
   text-transform: uppercase;
   background-color: transparent;
+  transition: opacity 0.3s ease;
   cursor: pointer;
   appearance: none;
-  transition-property: scale, opacity;
-  transition-timing-function: ease;
-  transition-duration: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-menu__button {
+    transition: none;
+  }
 }
 
 .theme-menu__button:disabled {
@@ -124,10 +128,18 @@
 
 .theme-menu__button:disabled::before {
   content: '▶';
-  display: inline-block;
   position: absolute;
-  inset-inline-start: -20px;
+  display: inline-block;
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
+  inset-inline-start: -20px;
+  animation: wiggle 0.5s infinite alternate ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-menu__button:disabled::before {
+    animation: none;
+    -webkit-animation: none;
+  }
 }
 
 .theme-menu__button:hover {
@@ -137,18 +149,30 @@
 .theme-menu__button::after {
   content: '';
   display: block;
+  background: var(--themes-color-main, #00cc14);
+  transition: scale 0.3s ease;
+  transform-origin: 0;
   inline-size: 100%;
   block-size: 2px;
-  background: var(--themes-color-main, #00cc14);
   scale: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-menu__button::after {
+    transition: none;
+  }
 }
 
 .theme-menu__button:focus {
   outline: none;
 }
 
+.theme-menu__button:focus-visible {
+  opacity: 0.6;
+}
+
 .theme-menu__button:focus-visible::after {
-  scale: 100%;
+  scale: 1;
 }
 
 .content {
@@ -169,35 +193,35 @@
 }
 
 .card__heading {
-  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 5px 10px 7px;
+  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   color: var(--themes-color-main, #00cc14);
-  font-variation-settings: 'wght' var(--themes-font-weight-heading, 785);
   font-size: var(--font-size-text, 1.125rem);
   background: var(--themes-color-background, #000);
+  font-variation-settings: 'wght' var(--themes-font-weight-heading, 785);
 }
 
 .card__image-wrapper {
   position: relative;
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
-  block-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
   overflow: hidden; /* Made to ensure that the blur filter not goes outside the image container */
+  block-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
 }
 
 .image-wrapper__watermark {
+  position: absolute;
   z-index: 1;
   opacity: 0.5;
-  pointer-events: none;
-  position: absolute;
-  inset-block-start: clamp(1.438rem, 1.393rem + 0.188vw, 1.563rem);
-  inset-inline-end: clamp(0.688rem, 0.379rem + 1.315vw, 1.563rem);
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
   font-size: var(--font-size-reduced, 0.875rem);
-  mix-blend-mode: hard-light;
   text-shadow: var(--themes-color-text-stroke, #000) 0 1px,
     var(--themes-color-text-stroke, #000) 1px 0,
     var(--themes-color-text-stroke, #000) 0 -1px,
     var(--themes-color-text-stroke, #000) -1px 0;
+  pointer-events: none;
+  inset-block-start: clamp(1.438rem, 1.393rem + 0.188vw, 1.563rem);
+  inset-inline-end: clamp(0.688rem, 0.379rem + 1.315vw, 1.563rem);
+  mix-blend-mode: hard-light;
 }
 
 @supports (
@@ -205,9 +229,9 @@
     (-webkit-text-stroke: 1px var(--themes-color-text-stroke, #000))
 ) {
   .image-wrapper__watermark {
+    text-shadow: none;
     -webkit-text-stroke: 1px var(--themes-color-text-stroke, #000);
     text-stroke: 1px var(--themes-color-text-stroke, #000);
-    text-shadow: none;
   }
 }
 
@@ -231,9 +255,9 @@
   flex-direction: column;
   gap: 27px;
   color: var(--themes-color-main, #00cc14);
-  font-variation-settings: 'wght' var(--themes-font-weight-normal, 465);
   font-size: var(--font-size-text, 1.125rem);
   line-height: 21px; /* 116.667% */
+  font-variation-settings: 'wght' var(--themes-font-weight-normal, 465);
 }
 
 .card__controls {
@@ -243,16 +267,13 @@
 }
 
 .card__icon-button {
+  margin-block-start: 2px;
   border: none;
   padding: 0;
+  font-size: 0;
   background: transparent;
   cursor: pointer;
   appearance: none;
-  font-size: 0;
-  margin-block-start: 2px;
-}
-
-.like-icon {
 }
 
 .like-icon .sparks {
@@ -286,6 +307,14 @@
   appearance: none;
 }
 
+.card__like-button:focus {
+  outline: none;
+}
+
+.card__like-button:focus-visible {
+  box-shadow: 2px 2px var(--themes-color-main);
+}
+
 .card__like-button::before {
   content: '';
   position: absolute;
@@ -293,6 +322,12 @@
   background: var(--themes-color-main, #00cc14);
   transition: translate 0.5s ease-in-out;
   translate: -100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__like-button::before {
+    transition: none;
+  }
 }
 
 .card__like-button:hover::before {
@@ -313,15 +348,15 @@
 }
 
 .footer__button-floppy {
-  appearance: none;
-  cursor: pointer;
-  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
-  font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  padding: 15px 20px;
-  background-color: transparent;
   display: flex;
   align-items: center;
   gap: 8px;
+  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
+  padding: 15px 20px;
+  font-family: var(--font-accent, 'Courier New', Courier, monospace);
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
 }
 
 @media (width <= 375px) {
@@ -343,17 +378,17 @@
 }
 
 #save-dialog {
-  background: var(--themes-color-background, #000);
   border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 30px;
+  background: var(--themes-color-background, #000);
   inline-size: clamp(21.313rem, 20.96rem + 1.502vw, 22.313rem);
 }
 
 #save-dialog[open] {
   display: grid;
-  align-items: center;
   grid-template-columns: min-content 1fr;
   grid-template-rows: min-content min-content;
+  align-items: center;
   gap: 30px 20px;
   color: var(--themes-color-main, #00cc14);
 }
@@ -364,9 +399,9 @@
 }
 
 #save-dialog .floppy {
+  flex-shrink: 0;
   block-size: 39px;
   inline-size: 39px;
-  flex-shrink: 0;
 }
 
 .save-dialog__text {
@@ -383,11 +418,11 @@
 
 .save-dialog__button {
   display: block;
-  inline-size: 100%;
-  appearance: none;
-  cursor: pointer;
-  background: transparent;
   border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 9px 17px;
   text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+  inline-size: 100%;
+  appearance: none;
 }
