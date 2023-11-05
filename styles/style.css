@@ -148,8 +148,8 @@
 
 .theme-menu__button::after {
   content: '';
-  display: block;
   position: absolute;
+  display: block;
   background: var(--themes-color-main, #00cc14);
   transition: scale 0.3s ease;
   transform-origin: 0;
@@ -314,8 +314,8 @@ There may be a solution that I don't know about...
 }
 
 .like-icon:hover .main-body {
-  transition: fill 0.3s linear 50ms;
   fill: var(--themes-color-main, #00cc14);
+  transition: fill 0.3s linear 50ms;
 }
 
 .like-icon:hover .core {
