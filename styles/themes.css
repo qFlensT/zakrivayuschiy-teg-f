@@ -35,6 +35,10 @@
   --themes-color-main: #000;
   --themes-color-background: #fff;
   --themes-color-heart-contour: #000;
+  --themes-font-weight-normal: 400;
+  --themes-font-weight-heading: 700;
+  --themes-color-button-text: #fff;
+  --themes-color-text-stroke: #fff;
 }
 
 @media (prefers-color-scheme: light) {

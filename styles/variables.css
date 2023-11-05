@@ -10,8 +10,14 @@
   --themes-color-main: #00cc14;
   --themes-color-background: #000;
   --themes-color-heart-contour: #00cc14;
+  --themes-font-weight-normal: 465;
+  --themes-font-weight-heading: 785;
+  --themes-color-text-stroke: #000;
+  --themes-color-button-text: #00cc14;
   --color-heart-sparks: #ff0000;
   --font-main: 'Inter';
   --font-accent: 'Press Start 2P';
-  --outline-accent: 2px solid var(--themes-color-main, #00cc14);
+  --font-size-reduced: 0.875rem;
+  --font-size-text: 1.125rem;
+  --border-accent: 2px solid var(--themes-color-main, #00cc14);
 }

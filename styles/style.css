@@ -66,7 +66,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  outline: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   background: var(--themes-color-background, #000);
   inline-size: min(calc(100% - 4px), 696px);
   block-size: min-content;
@@ -76,25 +76,19 @@
 
 .header__title {
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  font-weight: 400;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vi, 4.0625rem);
-  font-style: normal;
-  line-height: normal;
   text-transform: uppercase;
 }
 
 .header__subtitle {
   margin-block-start: 20px;
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  font-weight: 400;
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
-  font-style: normal;
-  line-height: normal;
   text-transform: uppercase;
 }
 
 .header__theme-menu {
-  margin: 25px 0 0 20px;
+  margin: 25px 0 0 19px;
 }
 
 .theme-menu__list {
@@ -103,36 +97,64 @@
   align-items: start;
   gap: 14px;
   inline-size: 100%;
+  font-size: 0;
 }
 
 .theme-menu__button {
-  display: block;
+  position: relative;
+  display: inline-block;
   border: none;
   padding: 0;
   color: var(--themes-color-main, #00cc14);
-  font-family: 'Press Start 2P';
-  font-weight: 400;
-  font-size: 14px;
-  font-style: normal;
-  line-height: normal;
+  font-family: var(--font-accent, 'Courier New', Courier, monospace);
+  font-size: var(--font-size-reduced, 0.875rem);
   text-transform: uppercase;
   background-color: transparent;
   cursor: pointer;
   appearance: none;
+  transition-property: scale, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .theme-menu__button:disabled::before {
   content: '▶';
-  font-family: var(--font-accent);
+  display: inline-block;
+  position: absolute;
+  inset-inline-start: -20px;
+  font-family: var(--font-accent, 'Courier New', Courier, monospace);
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: '';
+  display: block;
+  inline-size: 100%;
+  block-size: 2px;
+  background: var(--themes-color-main, #00cc14);
+  scale: 0;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+}
+
+.theme-menu__button:focus-visible::after {
+  scale: 100%;
 }
 
 .content {
   margin-block-start: 104px;
   background: var(--themes-color-background, #000);
   inline-size: min(calc(100vi - 4px), 696px);
-}
-
-.section {
 }
 
 .card-list {
@@ -143,25 +165,21 @@
 }
 
 .card {
-  outline: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
 }
 
 .card__heading {
-  display: flex;
-  align-items: center;
-  outline: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 5px 10px 7px;
   color: var(--themes-color-main, #00cc14);
-  font-weight: 785;
-  font-size: 18px;
-  font-style: normal;
-  line-height: normal;
-  background: var(--themes-color-background);
+  font-variation-settings: 'wght' var(--themes-font-weight-heading, 785);
+  font-size: var(--font-size-text, 1.125rem);
+  background: var(--themes-color-background, #000);
 }
 
 .card__image-wrapper {
   position: relative;
-  outline: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   block-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
   overflow: hidden; /* Made to ensure that the blur filter not goes outside the image container */
 }
@@ -174,17 +192,21 @@
   inset-block-start: clamp(1.438rem, 1.393rem + 0.188vw, 1.563rem);
   inset-inline-end: clamp(0.688rem, 0.379rem + 1.315vw, 1.563rem);
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  font-size: 14px;
+  font-size: var(--font-size-reduced, 0.875rem);
   mix-blend-mode: hard-light;
-  text-shadow: var(--themes-color-background) 0 1px,
-    var(--themes-color-background) 1px 0, var(--themes-color-background) 0 -1px,
-    var(--themes-color-background) -1px 0;
+  text-shadow: var(--themes-color-text-stroke, #000) 0 1px,
+    var(--themes-color-text-stroke, #000) 1px 0,
+    var(--themes-color-text-stroke, #000) 0 -1px,
+    var(--themes-color-text-stroke, #000) -1px 0;
 }
 
-@supports ((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
+@supports (
+  (text-stroke: 1px var(--themes-color-text-stroke, #000)) or
+    (-webkit-text-stroke: 1px var(--themes-color-text-stroke, #000))
+) {
   .image-wrapper__watermark {
-    -webkit-text-stroke: 1px #000;
-    text-stroke: 1px #000;
+    -webkit-text-stroke: 1px var(--themes-color-text-stroke, #000);
+    text-stroke: 1px var(--themes-color-text-stroke, #000);
     text-shadow: none;
   }
 }
@@ -209,10 +231,8 @@
   flex-direction: column;
   gap: 27px;
   color: var(--themes-color-main, #00cc14);
-  font-family: Inter;
-  font-variation-settings: 'wght' 465;
-  font-size: 18px;
-  font-style: normal;
+  font-variation-settings: 'wght' var(--themes-font-weight-normal, 465);
+  font-size: var(--font-size-text, 1.125rem);
   line-height: 21px; /* 116.667% */
 }
 
@@ -248,7 +268,7 @@
 }
 
 .like-icon:hover .core {
-  fill: var(--themes-color-main);
+  fill: var(--themes-color-main, #00cc14);
   transition: fill 0.3s linear;
 }
 
@@ -257,7 +277,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   overflow: hidden;
   background: var(--themes-color-background, #000);
   cursor: pointer;
@@ -270,19 +290,19 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--themes-color-main);
+  background: var(--themes-color-main, #00cc14);
   transition: translate 0.5s ease-in-out;
   translate: -100%;
 }
+
 .card__like-button:hover::before {
   translate: 0%;
 }
 
 .button__text {
-  color: var(--themes-color-main, #00cc14);
+  color: var(--themes-color-button-text, #00cc14);
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  font-weight: 400;
-  font-size: 14px;
+  font-size: var(--font-size-reduced, 0.875rem);
   font-style: normal;
   line-height: 90%; /* 12.6px */
   mix-blend-mode: difference;
@@ -295,7 +315,7 @@
 .footer__button-floppy {
   appearance: none;
   cursor: pointer;
-  border: var(--outline-accent, 2px solid var(--themes-color-main, #00cc14));
+  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
   padding: 15px 20px;
   background-color: transparent;
@@ -323,8 +343,8 @@
 }
 
 #save-dialog {
-  background: var(--themes-color-background);
-  border: var(--outline-accent);
+  background: var(--themes-color-background, #000);
+  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 30px;
   inline-size: clamp(21.313rem, 20.96rem + 1.502vw, 22.313rem);
 }
@@ -335,7 +355,7 @@
   grid-template-columns: min-content 1fr;
   grid-template-rows: min-content min-content;
   gap: 30px 20px;
-  color: var(--themes-color-main);
+  color: var(--themes-color-main, #00cc14);
 }
 
 #save-dialog::backdrop {
@@ -351,9 +371,8 @@
 
 .save-dialog__text {
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  font-size: 14px;
+  font-size: var(--font-size-reduced, 0.875rem);
   font-style: normal;
-  font-weight: 400;
   line-height: 150%; /* 21px */
   text-transform: uppercase;
 }
@@ -368,7 +387,7 @@
   appearance: none;
   cursor: pointer;
   background: transparent;
-  border: var(--outline-accent);
+  border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   padding: 9px 17px;
   text-transform: uppercase;
 }
