@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 /* Здесь вы напишете основную часть стилей страницы.
 
 Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
@@ -15,72 +22,104 @@
 */
 
 .grayscaled {
+  -webkit-filter: grayscale(50%);
   filter: grayscale(50%);
 }
 
 .saturated {
+  -webkit-filter: saturate(300%);
   filter: saturate(300%);
 }
 
 .hue-rotated {
+  -webkit-filter: hue-rotate(45deg);
   filter: hue-rotate(45deg);
 }
 
 .inverted {
-  filter: invert();
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }
 
 .sepia {
-  filter: sepia();
+  -webkit-filter: sepia(100%);
+  filter: sepia(100%);
 }
 
 .blured {
+  -webkit-filter: blur(10px);
   filter: blur(10px);
 }
 
 .mixed {
+  -webkit-filter: hue-rotate(90deg) blur(2px) sepia(50%);
   filter: hue-rotate(90deg) blur(2px) sepia(50%);
 }
 
 .page {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   color: var(--themes-color-main, #00cc14);
   font-family: var(--font-main, 'Arial Narrow', Arial, sans-serif);
-  background-color: var(--themes-color-background, #000);
-  background-image: var(
-    --themes-gradient-background,
-    repeating-linear-gradient(90deg, #000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
-    repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
-    linear-gradient(#007f0c, #004306)
-  );
-  background-repeat: no-repeat;
-  background-size: 100% 100vb;
+  background: var(
+      --themes-gradient-background,
+      repeating-linear-gradient(90deg, #000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
+      repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
+      linear-gradient(#007f0c, #004306)
+    )
+    no-repeat center / cover;
   min-inline-size: 320px;
   min-block-size: 100dvb;
 }
 
 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-margin-before: 102px;
   margin-block-start: 102px;
   padding: clamp(7.5rem, 7.148rem + 1.502vw, 8.5rem) 0 25px;
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   background: var(--themes-color-background, #000);
   inline-size: min(calc(100% - 4px), 696px);
+  block-size: -webkit-min-content;
+  block-size: -moz-min-content;
   block-size: min-content;
 }
 
-.header__title {
+.header__logo {
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vi, 4.0625rem);
+  text-decoration: none;
   text-transform: uppercase;
 }
 
-.header__subtitle {
+@media (width < 375px) {
+  .header__logo {
+    font-size: 2.75rem;
+  }
+}
+
+.header__title {
+  -webkit-margin-before: 20px;
   margin-block-start: 20px;
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
@@ -92,8 +131,15 @@
 }
 
 .theme-menu__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: start;
   gap: 14px;
   font-size: 0;
@@ -110,19 +156,13 @@
   font-size: var(--font-size-reduced, 0.875rem);
   text-transform: uppercase;
   background-color: transparent;
-  transition: opacity 0.3s ease;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .theme-menu__button {
-    transition: none;
-  }
-}
-
 .theme-menu__button:disabled {
-  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -131,19 +171,7 @@
   position: absolute;
   display: inline-block;
   font-family: var(--font-accent, 'Courier New', Courier, monospace);
-  animation: wiggle 0.5s infinite alternate ease-in-out;
   inset-inline-start: -20px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-menu__button:disabled::before {
-    animation: none;
-    -webkit-animation: none;
-  }
-}
-
-.theme-menu__button:hover {
-  opacity: 0.6;
 }
 
 .theme-menu__button::after {
@@ -151,50 +179,41 @@
   position: absolute;
   display: block;
   background: var(--themes-color-main, #00cc14);
-  transition: scale 0.3s ease;
-  transform-origin: 0;
   inline-size: 100%;
   block-size: 2px;
-  scale: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-menu__button::after {
-    transition: none;
-  }
 }
 
 .theme-menu__button:focus {
   outline: none;
 }
 
-.theme-menu__button:focus-visible {
-  opacity: 0.6;
-}
-
-.theme-menu__button:focus-visible::after {
-  scale: 1;
-}
-
 .content {
+  -webkit-margin-before: 104px;
   margin-block-start: 104px;
-  background: var(--themes-color-background, #000);
   inline-size: min(calc(100vi - 4px), 696px);
 }
 
 .card-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 54px;
 }
 
 .card {
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
+  background: var(--themes-color-background, #000);
 }
 
 .card__heading {
-  padding: 5px 10px 7px;
+  padding: 4px 10px 7px;
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   color: var(--themes-color-main, #00cc14);
   font-size: var(--font-size-text, 1.125rem);
@@ -206,7 +225,7 @@
   position: relative;
   outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   overflow: hidden; /* Made to ensure that the blur filter not goes outside the image container. */
-  block-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
+  aspect-ratio: 1/1;
 }
 
 .image-wrapper__watermark {
@@ -225,10 +244,7 @@
   mix-blend-mode: hard-light;
 }
 
-@supports (
-  (text-stroke: 1px var(--themes-color-text-stroke, #000)) or
-    (-webkit-text-stroke: 1px var(--themes-color-text-stroke, #000))
-) {
+@supports ((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
   .image-wrapper__watermark {
     text-shadow: none;
     -webkit-text-stroke: 1px var(--themes-color-text-stroke, #000);
@@ -236,23 +252,36 @@
   }
 }
 
-.card__image {
+.image-wrapper__image {
+  -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: right;
   object-position: right;
   inline-size: 100%;
   block-size: 100%;
 }
 
 .card__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   gap: 25px;
+  -webkit-border-before: none;
   border-block-start: none;
   padding: 27px 25px 25px;
 }
 
 .card__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   gap: 27px;
   color: var(--themes-color-main, #00cc14);
@@ -262,7 +291,11 @@
 }
 
 .card__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: end;
   gap: 6px;
 }
@@ -273,6 +306,8 @@
   font-size: 0;
   background: transparent;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 
@@ -280,107 +315,23 @@
   outline: none;
 }
 
-.card__icon-button:focus-visible {
-  outline: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
-  outline-offset: -2px;
-}
-
-/* 
-To animate the heart icon, the fill="transparent" is used everywhere in inline svg icon insert.
-Ref: https://stackoverflow.com/questions/20012240/using-css-to-transition-the-fill-property-of-an-svg-path-on-hover#answer-20012937
-
-There may be a solution that I don't know about...
-*/
-
-.like-icon {
-  /* inline-size: 27px;
-  block-size: 100%; */
-}
-
-.like-icon .contour {
-  transition: fill 0.1s linear;
-}
-
-.like-icon .sparks {
-  opacity: 0;
-}
-
-.like-icon .main-body {
-  transition: fill 0.3s linear;
-}
-
-.like-icon .core {
-  transition: fill 0.3s linear 30ms;
-}
-
-.like-icon:hover .main-body {
-  fill: var(--themes-color-main, #00cc14);
-  transition: fill 0.3s linear 50ms;
-}
-
-.like-icon:hover .core {
-  fill: var(--themes-color-main, #00cc14);
-  transition: fill 0.3s linear;
-}
-
-.like-icon:active .core {
-  fill: var(--color-heart-fill, #f00);
-  transition: fill 0.3s linear;
-}
-
-.like-icon:active .main-body {
-  fill: var(--color-heart-fill, #f00);
-  transition: fill 0.3s linear 50ms;
-}
-
-.like-icon.is-liked .core {
-  fill: var(--color-heart-fill, #f00);
-  transition: fill 0.3s linear;
-}
-
-.like-icon.is-liked .main-body {
-  fill: var(--color-heart-fill, #f00);
-  transition: fill 0.3s linear 50ms;
-}
-
-.like-icon.is-liked .contour {
-  fill: var(--color-heart-fill, #f00);
-  transition: fill 0.3s linear 60ms;
-}
-
-.like-icon .heart {
-  transform-origin: center;
-}
-
-.like-icon.is-liked .heart {
-  animation: scale-up 2 0.15s alternate ease-in 0.1s;
-}
-
-.like-icon.is-liked .sparks {
-  animation: fade-in 0.3s alternate ease-in 0.3s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .like-icon .heart *,
-  .like-icon:hover .heart *,
-  .like-icon.is-liked .heart,
-  .like-icon.is-liked .heart *,
-  .like-icon.is-liked .sparks {
-    transition: none;
-    animation: none;
-  }
-}
-
 .accent-button {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   border: var(--border-accent, 2px solid var(--themes-color-main, #00cc14));
   overflow: hidden;
   background: var(--themes-color-background, #000);
-  transition: box-shadow 0.3s ease;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 
@@ -388,27 +339,11 @@ There may be a solution that I don't know about...
   outline: none;
 }
 
-.accent-button:focus-visible {
-  box-shadow: 2px 2px var(--themes-color-main);
-}
-
 .accent-button::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--themes-color-main, #00cc14);
-  transition: translate 0.5s ease-in-out;
-  translate: -100%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .accent-button::before {
-    transition: none;
-  }
-}
-
-.accent-button:hover::before {
-  translate: 0%;
 }
 
 .card__like-button {
@@ -436,6 +371,9 @@ There may be a solution that I don't know about...
 
 @media (width <= 375px) {
   .footer__button-floppy {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
@@ -460,12 +398,46 @@ There may be a solution that I don't know about...
 }
 
 #save-dialog[open] {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: -webkit-min-content 20px 1fr;
+  -ms-grid-columns: min-content 20px 1fr;
+  grid-template-columns: -webkit-min-content 1fr;
   grid-template-columns: min-content 1fr;
+  -ms-grid-rows: -webkit-min-content 30px -webkit-min-content;
+  -ms-grid-rows: min-content 30px min-content;
+  grid-template-rows: -webkit-min-content -webkit-min-content;
   grid-template-rows: min-content min-content;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 30px 20px;
   color: var(--themes-color-main, #00cc14);
+}
+
+#save-dialog[open] > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+#save-dialog[open] > *:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+
+#save-dialog[open] > *:nth-child(3) {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+}
+
+#save-dialog[open] > *:nth-child(4) {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+}
+
+#save-dialog::-webkit-backdrop {
+  opacity: 0.75;
+  background: var(--themes-color-background, #000);
 }
 
 #save-dialog::backdrop {
@@ -474,6 +446,7 @@ There may be a solution that I don't know about...
 }
 
 #save-dialog .floppy {
+  -ms-flex-negative: 0;
   flex-shrink: 0;
   block-size: 39px;
   inline-size: 39px;
@@ -488,6 +461,7 @@ There may be a solution that I don't know about...
 }
 
 .save-dialog__form {
+  -ms-grid-column-span: 2;
   grid-column: span 2;
 }
 
