@@ -75,7 +75,7 @@
       repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
       linear-gradient(#007f0c, #004306)
     )
-    no-repeat center / cover;
+    no-repeat fixed center / cover;
   min-inline-size: 320px;
   min-block-size: 100dvb;
 }
