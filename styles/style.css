@@ -69,13 +69,16 @@
   align-items: center;
   color: var(--themes-color-main, #00cc14);
   font-family: var(--font-main, 'Arial Narrow', Arial, sans-serif);
-  background: var(
-      --themes-gradient-background,
-      repeating-linear-gradient(90deg, #000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
-      repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
-      linear-gradient(#007f0c, #004306)
-    )
-    no-repeat fixed center / cover;
+  background-color: var(--themes-color-background, #000);
+  background-image: var(
+    --themes-gradient-background,
+    repeating-linear-gradient(90deg, #000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
+    repeating-linear-gradient(#000 0px 2px, rgb(0 0 0 / 0) 2px 4px),
+    linear-gradient(#007f0c, #004306)
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   min-inline-size: 320px;
   min-block-size: 100dvb;
 }
